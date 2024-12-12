@@ -30,9 +30,12 @@
               "src/assets"
             ],
             "styles": [
+              "remixicon/fonts/remixicon.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,33 @@
+/* COLORS */
+
+$color_primary          : #3498DB;
+$color_danger           : #FB2E2E;
+$color_dark             : #141824;
+$color_secondary_light  : #EFF2F6;
+$color_secondary        : #858A9B;
+$color_white            : #FFFFFF;
+$color_border           : #D9D9D9;
+$color_column_title     : #31374A;
+$color_body             : #F5F7FA;
+
+
+
+/* BOOTSTRAP VARIABLES */
+$primary: $color-primary;
+$danger: $color-danger;
+$body-bg: $color_body;
+
+
+$table-bg: none;
+$table-cell-padding-y: 1.25rem;
+$table-border-color: $color_border;
+
+$btn-padding-y: 8px;
+$btn-padding-x: 20px;
+$btn-border-radius: 3px;
+$btn-font-weight: bold;
+
+$input-padding-y: 0.875rem;
+$input-padding-x: 1rem;
+$input-border-radius: 3px;
+$input-bg: $color_white;

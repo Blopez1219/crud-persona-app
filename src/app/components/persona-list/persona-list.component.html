@@ -1,0 +1,116 @@
+<div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mt-5 mb-4">
+  <h2 class="section-title">Personas</h2>
+
+  <div class="d-flex align-items-center-flex-wrap gap-3 gap-sm-5">
+    <p class="m-0 total-spent-text">Total personas: <span class="fw-bold ms-1"><i class="ri-arrow-down-s-fill text-danger"></i> {{total}}</span></p>
+    <a href="#" class="btn btn-primary" (click)="openModal($event)">Agregar Persona</a>
+  </div>
+</div>
+<div  class="d-flex align-items-center justify-content-end gap-2 flex-wrap mt-3 mb-4">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Buscar..."
+    [(ngModel)]="searchText"
+      (input)="applyFilter()"
+    style="width: 300px;"
+  />
+</div>
+<div class="table-responsive mb-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"  width="180">Nombre</th>
+        <th scope="col" width="180">Apellido</th>
+        <th scope="col">Dirección</th>
+        <th scope="col" class="table-head-action"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="personas.length"; else emptyMessage*>
+        <tr *ngFor="let persona of displayedPersonas">
+          <td>{{persona.id}}</td>
+          <td>{{persona.name}}</td>
+          <td>{{persona.last_name}}</td>
+          <td>{{persona.address}}</td>
+          <td class="table-data-action">
+            <div>
+              <button
+                class="btn btn-link p-0"
+                (click)="openInfoModal(persona)"
+                title="Detalle de persona"
+              >
+                <i class="ri-information-line"></i>
+              </button>
+              <a href="#" class="btn btn-link" (click)="openEditModal($event, persona)" title="Editar Persona">
+                <i class="ri-edit-box-line"></i>
+              </a>
+              <button class="btn btn-link p-0" (click)="deletePersona($event, persona.id)" title="Eliminar Persona">
+                <i class="ri-delete-bin-2-line"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #emptyMessage>
+        <tr>
+          <td colspan="7"> No hay datos para motrar</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+  <div  class="d-flex align-items-center justify-content-end gap-2 flex-wrap mt-3 mb-4">
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" href="#" (click)="goToPreviousPage($event)">Anterior</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" href="#" (click)="goToNextPage($event)">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+</div>
+
+
+<app-persona-form [personaId]="personaId"></app-persona-form>
+
+<!-- Modal Informativo -->
+<div
+  class="modal fade"
+  id="personaInfoModal"
+  tabindex="-1"
+  aria-labelledby="personaInfoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="personaInfoModalLabel">Información de la Persona - {{selectedPersona?.name +" "+selectedPersona?.last_name}}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Fecha de Nacimiento:</strong> {{ selectedPersona?.birthdate | date: 'dd/MM/YYYY' }}</p>
+        <p><strong>Teléfono:</strong> {{ selectedPersona?.phone }}</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

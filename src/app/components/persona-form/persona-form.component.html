@@ -1,0 +1,88 @@
+<!-- Modal -->
+<div class="modal fade" id="personaFormModal" tabindex="-1" aria-labelledby="personaFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title section-title mb-4" id="personaFormModalLabel">{{getFormTitle()}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario -->
+        <form class="mb-5" [formGroup]="personaForm" (ngSubmit)="savePersona()">
+          <div class="mb-3">
+            <label for="nameInput" class="form-label">Nombre</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control {{hasError('name') ? 'is-invalid' : ''}}"
+              id="typeImput"
+              placeholder="Ingrese el nombre"
+            >
+            <div class="invalid-feedback" [ngSwitch]="getCurrentError('name')">
+              <span *ngSwitchCase="'required'">El campo nombre es requerido</span>
+              <span *ngSwitchCase="'maxlength'">El campo nombre debe contener 200 caracteres maximo</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="last_nameInput" class="form-label">Apellido</label>
+            <input
+              type="text"
+              formControlName="last_name"
+              class="form-control {{hasError('last_name') ? 'is-invalid' : ''}}"
+              id="last_nameInput"
+              placeholder="Ingrese el apellido"
+            >
+            <div class="invalid-feedback" [ngSwitch]="getCurrentError('last_name')">
+              <span *ngSwitchCase="'required'">El campo apellido es requerido</span>
+              <span *ngSwitchCase="'maxlength'">El campo apellido debe contener 200 caracteres maximo</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="birthdateInput" class="form-label">Fecha de nacimiento</label>
+            <input
+              type="date"
+              formControlName="birthdate"
+              class="form-control {{hasError('birthdate') ? 'is-invalid' : ''}}"
+              id="birthdateInput"
+            >
+            <div class="invalid-feedback" [ngSwitch]="getCurrentError('birthdate')">
+              <span *ngSwitchCase="'required'">El campo fecha de nacimiento es requerido</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="addressInput" class="form-label">Dirección</label>
+            <input
+              type="text"
+              formControlName="address"
+              class="form-control {{hasError('address') ? 'is-invalid' : ''}}"
+              id="addressInput"
+              placeholder="Ingrese la dirección"
+            >
+            <div class="invalid-feedback" [ngSwitch]="getCurrentError('address')">
+              <span *ngSwitchCase="'required'">El campo dirección es requerido</span>
+              <span *ngSwitchCase="'maxlength'">El campo dirección debe contener 200 caracteres maximo</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="phoneInput" class="form-label">Teléfono</label>
+            <input
+              type="text"
+              formControlName="phone"
+              class="form-control {{hasError('phone') ? 'is-invalid' : ''}}"
+              id="phoneInput"
+              placeholder="Ingrese el teléfono"
+            >
+            <div class="invalid-feedback" [ngSwitch]="getCurrentError('phone')">
+              <span *ngSwitchCase="'required'">El campo teléfono es requerido</span>
+              <span *ngSwitchCase="'maxlength'">El campo teléfono debe contener 20 caracteres maximo</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" (click)="savePersona()" [disabled]="personaForm.invalid">Guardar Persona</button>
+      </div>
+    </div>
+  </div>
+</div>
